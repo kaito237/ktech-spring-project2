@@ -1,1 +1,3 @@
-spring.application.name=ktech-spring-project2
+spring:
+  profiles:
+    default: dev

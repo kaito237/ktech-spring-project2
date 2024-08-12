@@ -16,15 +16,9 @@ public class Comment {
     @Setter
     private String writer;
     @Setter
+    private String password;
+    @Setter
     @ManyToOne
-    private User user;
-    private Instructor instructor;
+    private Post post;
 
-    public Comment() {}
-
-    public Comment(String content, String writer, Instructor instructor){
-        this.content = content;
-        this.writer = writer;
-        this.instructor = instructor;
-    }
 }

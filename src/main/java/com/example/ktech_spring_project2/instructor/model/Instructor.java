@@ -13,23 +13,13 @@ public class Instructor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Setter
-    private String title;
-    @Setter
-    private String content;
-    @Setter
-    private String writer;
+    private String name;
 
-    @Setter
-    @OneToMany(mappedBy = "article")
-    private List<Comment> comments;
 
-    public Instructor() {}
+    @OneToMany(mappedBy = "instructor")
+    private List<Post> posts;
 
-    public Instructor(String title, String content, String writer) {
-        this.title = title;
-        this.content = content;
-        this.writer = writer;
+
     }
 
 
-}

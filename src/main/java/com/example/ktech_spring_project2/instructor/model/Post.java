@@ -2,16 +2,25 @@ package com.example.ktech_spring_project2.instructor.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Setter;
+
+import java.util.List;
 
 @Data
 @Entity
-public class User {
+public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String title;
+    private String writer;
     private String password;
+
+    @Setter
     @ManyToOne
-    private Instructor advisor;
+    private Instructor instructor;
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
 
 }
