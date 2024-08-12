@@ -11,9 +11,13 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter
     private Long id;
+    @Setter
     private String title;
+    @Setter
     private String writer;
+    @Setter
     private String password;
 
     @Setter

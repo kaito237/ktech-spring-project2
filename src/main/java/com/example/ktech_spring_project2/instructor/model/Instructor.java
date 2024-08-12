@@ -13,7 +13,8 @@ public class Instructor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Setter
-    private String name;
+    private String title;
+
 
 
     @OneToMany(mappedBy = "instructor")

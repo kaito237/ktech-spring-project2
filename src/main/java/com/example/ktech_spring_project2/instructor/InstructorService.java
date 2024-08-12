@@ -1,6 +1,7 @@
 package com.example.ktech_spring_project2.instructor;
+
 import com.example.ktech_spring_project2.instructor.model.Instructor;
-import com.example.ktech_spring_project2.instructor.model.repo.InstructorRepository;
+import com.example.ktech_spring_project2.instructor.repo.InstructorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +15,16 @@ public class InstructorService {
     public InstructorService(InstructorRepository instructorRepository) {
         this.instructorRepository = instructorRepository;
     }
-    public List<Instructor> findAll() {
+    public List<Instructor> findAllInstructor() {
         return instructorRepository.findAll();
     }
 
-    public Instructor findByID(Long id){
-        return instructorRepository.findById(id).orElse(null);
+    public Optional<Instructor> findInstructorById(Long id) {
+        return instructorRepository.findById(id);
+    }
+
+    public Instructor create(Instructor instructor){
+        return instructorRepository.save(instructor);
 
     }
 
@@ -31,28 +36,6 @@ public class InstructorService {
                 .orElse(null);
     }
 
-//    // update
-//    public  Instructor update(
-//            long id,
-//            String title,
-//            String content,
-//            String writer
-//    ) {
-//        Optional<Instructor> optionalTarget = repository.findById(id);
-//        if (optionalTarget.isEmpty()) {
-//            return null;
-//        }
-//        Instructor target = optionalTarget.get();
-//        target.setTitle(title);
-//        target.setContent(content);
-//        target.setWriter(writer);
-//        return repository.save(target);
-//    }
-//
-//    // delete
-//    public void delete(Long id) {
-//        repository.deleteById(id);
-//    }
 
 }
 

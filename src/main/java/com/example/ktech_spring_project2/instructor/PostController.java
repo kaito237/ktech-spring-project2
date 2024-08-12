@@ -1,59 +1,63 @@
 package com.example.ktech_spring_project2.instructor;
 
+import com.example.ktech_spring_project2.instructor.model.Instructor;
 import com.example.ktech_spring_project2.instructor.model.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/posts")
 public class PostController {
     private  final PostService postService;
 
     public  PostController(PostService postService){
         this.postService = postService;
     }
-    @GetMapping("/posts/{postId}")
-    public String PostView(
-            @PathVariable Long postId,
+    @GetMapping("/create")
+    public String createPostForm(
             Model model
     ) {
-        Post post = postService.findById(postId);
-        model.addAttribute("post", post);
-        return "post/posts-view.html";
+        model.addAttribute("instructor", new Instructor());
+        return "instructors/create.html";
     }
 
-    @GetMapping("/post/new")
-    public String newPost(
+    @PostMapping("/create")
+    public String createPost(
+            @ModelAttribute Post post
+    ) {
+        postService.creatPost(post.getId(), null);
+        return "redirect:/instructors";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editPostForm(
+            @PathVariable Long id,
             Model model
     ) {
+        Post post = postService.findPostById(id).orElseThrow();
         model.addAttribute("post", new Post());
         return "posts/new.html";
     }
 
-    @GetMapping("/posts/{postId}/edit")
-    public String editPost(@PathVariable Long postId, Model model) {
-        Post post = postService.findById(postId);
-        model.addAttribute("post", post);
-        return "posts/edit";
-    }
-    @PostMapping("/posts")
-    public String createPost(@ModelAttribute Post post) {
-        postService.save(post);
-        return "redirect:/boards/" + post.getInstructor().getId();
-    }
-
-    @PostMapping("/posts/{postId}")
-    public String updatePost(@PathVariable Long postId, @ModelAttribute Post post) {
-        postService.save(post);
-        return "redirect:/posts/" + postId;
+    @PostMapping("/{id}/edit")
+    public String editPost(
+            @PathVariable Long id,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("password") String password
+    ) {
+        postService.updatePost(id, title, content, password);
+        return "redirect:/instructors/" +id;
     }
 
-    @PostMapping("/posts/{postId}/delete")
-    public String deletePost(@PathVariable Long postId) {
-        postService.deleteById(postId);
+
+    @PostMapping("/{id}/delete")
+    public String deletePost(
+            @PathVariable Long id,
+            @RequestParam("password") String password
+    ){
+       postService.deletePost(id, password);
         return "redirect:/instructors";
     }
 }
