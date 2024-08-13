@@ -11,21 +11,19 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter
+
     private Long id;
-    @Setter
+
     private String title;
-    @Setter
+
     private  String content;
-    @Setter
+
     private String password;
 
-    @Setter
+
     @ManyToOne
     private Instructor instructor;
 
-    @OneToMany(mappedBy = "post")
-    private List<Comment> comments;
 
     public Post() {}
 

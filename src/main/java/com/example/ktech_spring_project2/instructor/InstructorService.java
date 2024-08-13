@@ -16,6 +16,7 @@ public class InstructorService {
         this.instructorRepository = instructorRepository;
     }
     public List<Instructor> findAllInstructor() {
+//        instructorRepository.findByTitle("");
         return instructorRepository.findAll();
     }
 
@@ -38,5 +39,4 @@ public class InstructorService {
 
 
 }
-
 

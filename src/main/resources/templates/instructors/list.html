@@ -40,30 +40,38 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="list.html">천제 게시판</a>
-    <a href="list.html">자유 게시판</a>
-    <a href="list.html">개발 게시판</a>
-    <a href="list.html">일상 게시판</a>
-    <a href="list.html">사건사고 게시판</a>
+    <a href="list.html" th:href="@{/instructors/list}">천제 게시판</a>
+    <a href="list.html" th:href="@{/instructors/list}">자유 게시판</a>
+    <a href="list.html" th:href="@{/instructors/list}">개발 게시판</a>
+    <a href="list.html" th:href="@{/instructors/list}">일상 게시판</a>
+    <a href="list.html" th:href="@{/instructors/list}">사건사고 게시판</a>
 </div>
 
 <div class="container">
     <h1>전체 게시판</h1>
-<!--    bam vao write nhay ve post-->
-    </hr> <a href="create.html">Write</a>
+    <!--    bam vao write nhay ve post-->
+    </hr>
+    <a href="instructors/create.html" th:href="@{/instructors/create}">view</a>
 </div>
- <div>
-     <table>
-         <thead>
-         <tr>
-             <th>Title</th>
-             <th>Board</th>
-         </tr>
-         </thead>
-     </table>
- </div>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Board</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="ins : ${instructors}">
+            <tr>
+                <td th:text="${ins.title}">...</td>
+                <td th:text="${ins.title}">...</td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
 </div>
 </body>
 </html>
-
 

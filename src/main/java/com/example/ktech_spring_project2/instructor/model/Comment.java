@@ -1,24 +1,15 @@
 package com.example.ktech_spring_project2.instructor.model;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
 
-@Getter
+@Data
 @Entity
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Setter
-    private String content;
-    @Setter
-    private String writer;
-    @Setter
-    private String password;
-    @Setter
-    @ManyToOne
-    private Post post;
-
 }

@@ -12,15 +12,17 @@ public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter
+
+    private String name;
     private String title;
+//    private String broad;
+    //comment4
+    // password
 
 
 
-    @OneToMany(mappedBy = "instructor")
-    private List<Post> posts;
 
 
-    }
 
+}
 
