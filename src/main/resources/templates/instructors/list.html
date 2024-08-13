@@ -40,35 +40,27 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="/instructors/create">Viết bài</a>
-    <a href="/instructors">Xem bài viết</a>
-    <a href="/instructors/edit">Sửa bài đăng</a>
-    <a href="/instructors/delete">Xóa bài viết</a>
-    <a href="/comments/add">Viết bình luận</a>
+    <a href="list.html">천제 게시판</a>
+    <a href="list.html">자유 게시판</a>
+    <a href="list.html">개발 게시판</a>
+    <a href="list.html">일상 게시판</a>
+    <a href="list.html">사건사고 게시판</a>
 </div>
 
 <div class="container">
-    <h1>Danh sách bài viết</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Tiêu đề</th>
-            <th>Ngày đăng</th>
-            <th>Hành động</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="instructor : ${instructors}">
-            <td th:text="${instructor.title}">Tiêu đề bài viết</td>
-            <td th:text="${instructor.date}">Ngày đăng</td>
-            <td class="actions">
-                <a th:href="@{/instructors/{id}(id=${instructor.id})}">Xem</a>
-                <a th:href="@{/instructors/{id}/edit(id=${instructor.id})}">Sửa</a>
-                <a th:href="@{/instructors/{id}/delete(id=${instructor.id})}">Xóa</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <h1>전체 게시판</h1>
+    </hr> <a href="create.html">Write</a>
+</div>
+ <div>
+     <table>
+         <thead>
+         <tr>
+             <th>Title</th>
+             <th>Board</th>
+         </tr>
+         </thead>
+     </table>
+ </div>
 </div>
 </body>
 </html>

@@ -17,6 +17,7 @@ public class CommentController {
 
         this.commentService = commentService;
     }
+    // 댓글 추가하기
     @PostMapping("/{postId}")
     public String addComment(
             @PathVariable
@@ -30,6 +31,8 @@ public class CommentController {
         commentService.addComment(postId, comment);
         return "redirect:/posts/" + postId;
     }
+
+    // 댓글 삭제하기
 
     @SneakyThrows
     @PostMapping("/{postId}/{commentId}/delete")

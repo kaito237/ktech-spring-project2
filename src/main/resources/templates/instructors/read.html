@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${article.create}">Instructor Title</title>
+</head>
+<body>
+<h1 th:text="${instructor.title}">Article Title</h1>
+
+<!-- Liên kết quay lại danh sách bài viết -->
+<a href="list.html">뒤로가기</a>
+
+<!-- Liên kết cập nhật bài viết -->
+<!--<a th:href="@{/instructors/{id}/update(id=${article.id})}">Update</a>-->
+
+<!-- Form xóa bài viết -->
+<form th:action="@{/instructors/{id}/delete(id=${article.id})}" method="post">
+    <input type="submit" value="Delete">
+</form>
+
+<hr>
+
+<!-- Phần nội dung bài viết -->
+<p th:text="${article.content}">Content</p>
+
+<hr>
+
+<!-- Phần bình luận -->
+<div>
+<h2>Comments</h2>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="content">Content:</label>
+    <input id="content" name="content" height="100" required>
+    <br>
+    <button type="submit" value="write">작성</button>
+
+</div>
+</body>
+</html>

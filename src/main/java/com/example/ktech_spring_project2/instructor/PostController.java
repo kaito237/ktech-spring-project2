@@ -37,7 +37,7 @@ public class PostController {
     ) {
         Post post = postService.findPostById(id).orElseThrow();
         model.addAttribute("post", new Post());
-        return "posts/new.html";
+        return "posts/create.html";
     }
 
     @PostMapping("/{id}/edit")
