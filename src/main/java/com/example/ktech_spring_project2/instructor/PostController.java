@@ -15,49 +15,68 @@ public class PostController {
         this.postService = postService;
     }
     @GetMapping("/create")
-    public String createPostForm(
+    public String createPost(
             Model model
     ) {
         model.addAttribute("instructor", new Instructor());
         return "instructors/create.html";
     }
 
-    @PostMapping("/create")
-    public String createPost(
-            @ModelAttribute Post post
+    @PostMapping("create")
+    public String create(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("password") String password //
     ) {
-        postService.creatPost(post.getId(), null);
-        return "redirect:/instructors";
+        // Gọi phương thức tạo bài viết từ service
+        Long id = postService.createPost(title, content, password).getId();
+
+        // Chuyển hướng đến trang chi tiết của bài viết mới tạo
+        return String.format("redirect:/instructors/%d", id);
+    }
+    // READ ALL
+    @GetMapping  // /articles
+    public String readAll(Model model) {
+        model.addAttribute("articles", postService.readAll());
+        return "articles/home.html";
     }
 
-    @GetMapping("/{id}/edit")
+    // READ ONE
+    //  /articles/1 => id = 1
+    //  /articles/2 => id = 2
+    //  /articles/3 => id = 3
+    @GetMapping("{id}")
+    public String readOne(
+            @PathVariable("id")
+            Long id,
+            Model model
+    ) {
+        model.addAttribute("article", postService.readOne(id));
+        return "articles/read.html";
+    }
+
+    // update == submit
+
+    @GetMapping("/{id}/update")
     public String editPostForm(
             @PathVariable Long id,
             Model model
     ) {
-        Post post = postService.findPostById(id).orElseThrow();
+        model.addAttribute("instructor", postService.readOne(id));
         model.addAttribute("post", new Post());
-        return "posts/create.html";
+        return "posts/read.html";
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/{id}/update")
     public String editPost(
             @PathVariable Long id,
             @RequestParam("title") String title,
             @RequestParam("content") String content,
             @RequestParam("password") String password
     ) {
-        postService.updatePost(id, title, content, password);
-        return "redirect:/instructors/" +id;
+        postService.update(id, title, content, password);
+        return "redirect:/posts/%d" +id;
     }
 
 
-    @PostMapping("/{id}/delete")
-    public String deletePost(
-            @PathVariable Long id,
-            @RequestParam("password") String password
-    ){
-       postService.deletePost(id, password);
-        return "redirect:/instructors";
-    }
 }

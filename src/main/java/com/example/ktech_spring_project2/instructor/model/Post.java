@@ -16,7 +16,7 @@ public class Post {
     @Setter
     private String title;
     @Setter
-    private String writer;
+    private  String content;
     @Setter
     private String password;
 
@@ -26,5 +26,13 @@ public class Post {
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments;
+
+    public Post() {}
+
+    public Post(String title, String content, String password) {
+        this.title = title;
+        this.content = content;
+        this.password = password;
+    }
 
 }

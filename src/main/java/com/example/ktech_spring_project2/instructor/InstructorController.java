@@ -19,20 +19,20 @@ public class InstructorController {
     }
 
     // CREATE
-    @GetMapping("/instructors")
+    @GetMapping("list")
     public String ListInstructor(Model model) {
         List<Instructor> instructors = service.findAllInstructor();
         model.addAttribute("instructors", instructors);
         return "instructors/list.html";
     }
     @GetMapping("{/Id}")
-    public String viewInstructor(
+    public String createInstructor(
             @PathVariable("id")
             Long id,
             Model model
     ) {
         Instructor instructor = service.findInstructorById(id).orElseThrow();
         model.addAttribute("instructor", service.readOne(id));
-        return "instructors/view.html";
+        return "instructors/create.html";
     }
 }

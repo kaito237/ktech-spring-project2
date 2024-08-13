@@ -29,7 +29,7 @@ public class CommentController {
         comment.setContent(content);
         comment.setPassword(password);
         commentService.addComment(postId, comment);
-        return "redirect:/posts/" + postId;
+        return "redirect:/read" + postId;
     }
 
     // 댓글 삭제하기
@@ -42,7 +42,7 @@ public class CommentController {
             @RequestParam("password") String password
     ){
         commentService.deleteComment(commentId, password);
-        return "redirect:/posts/" + postId;
+        return "redirect:/read/" + postId;
 
     }
 

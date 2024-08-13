@@ -6,54 +6,56 @@ import com.example.ktech_spring_project2.instructor.repo.InstructorRepository;
 import com.example.ktech_spring_project2.instructor.repo.PostRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PostService {
     private final PostRepository postRepository;
-    private final InstructorRepository instructorRepository;
-    public PostService(
-            PostRepository postRepository,
-            InstructorRepository instructorRepository) {
+    public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
-        this.instructorRepository = instructorRepository;
     }
 
-    public Post creatPost(
-            Long instructorId,
-            Post post
+    public Post createPost(
+            String title,
+            String content,
+            String password
     ) {
-        Instructor instructor = instructorRepository.findById(instructorId).orElseThrow();
-        post.setInstructor(instructor);
+        Post post = new Post( title, content, password);
         return postRepository.save(post);
+
     }
-    public Optional<Post> findPostById(Long id) {
-        return postRepository.findById(id);
+    // read all
+
+    public List<Post> readAll() {
+        return  postRepository.findAll();
     }
 
-    public Post updatePost(
+
+    // read one
+
+    public Post readOne(Long id) {
+        return postRepository.findById(id).orElse(null);
+    }
+
+    //update
+    public Post update(
             Long id,
             String title,
             String content,
             String password
     ) {
-        Post post = postRepository.findById(id).orElseThrow();
-        if (post.getPassword().equals(password)) {
-            post.setTitle(title);
-//            post.setContent(content);
-            return postRepository.save(post);
+        Optional<Post> optionalTarget = postRepository.findById(id);
+        if (optionalTarget.isEmpty()) {
+            return null;
         }
-        throw new IllegalArgumentException("Password does not match");
+        Post target = optionalTarget.get();
+        target.setPassword(title);
+        target.setContent(content);
+        target.setPassword(password);
+        return postRepository.save(target);
     }
 
-    public void deletePost(Long id, String password) {
-        Post post = postRepository.findById(id).orElseThrow();
-        if (post.getPassword().equals(password)) {
-            postRepository.delete(post);
-        } else {
-            throw new IllegalArgumentException("Password does not match");
-        }
-    }
-
+    //delete
 
 }
