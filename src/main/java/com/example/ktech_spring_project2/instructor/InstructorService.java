@@ -16,9 +16,14 @@ public class InstructorService {
         this.instructorRepository = instructorRepository;
     }
     public List<Instructor> findAllInstructor() {
-//        instructorRepository.findByTitle("");
         return instructorRepository.findAll();
     }
+    public List<Instructor> findByTitle(String type) {
+        instructorRepository.findByTitle("");
+        return instructorRepository.findByTitle(type);
+    }
+
+
 
     public Optional<Instructor> findInstructorById(Long id) {
         return instructorRepository.findById(id);
@@ -28,6 +33,9 @@ public class InstructorService {
         return instructorRepository.save(instructor);
 
     }
+
+
+
 
     // readOne
 
