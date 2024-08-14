@@ -5,3 +5,4 @@ Spring Initializr (https://start.spring.io)를 사용하여 다음 의존성으�
 - Spring Data JPA
 - Lombok
  
+시간 더 보내주시면 힘드겠죠?
