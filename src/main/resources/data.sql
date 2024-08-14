@@ -6,8 +6,8 @@ DROP TABLE IF EXISTS Instructor;
 -- Tạo bảng Instructor
 CREATE TABLE IF NOT EXISTS Instructor (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    title TEXT NOT NULL
+    title TEXT NOT NULL,
+    board TEXT NOT NULL
 );
 
 -- Tạo bảng Post với khóa ngoại tham chiếu đến bảng Instructor
@@ -20,9 +20,8 @@ CREATE TABLE IF NOT EXISTS Post (
 );
 
 -- Thêm một số dữ liệu mẫu vào bảng Instructor
-INSERT INTO Instructor (name,title) VALUES ('Instructor1', 'password123');
-INSERT INTO Instructor (name, title) VALUES ('Instructor2', 'password456');
-INSERT INTO Instructor (name, title) VALUES ('Instructor3', 'password789');
-INSERT INTO Instructor (name, title) VALUES ('Instructor4', 'password321');
-INSERT INTO Instructor (name, title) VALUES ('Instructor5', 'password654');
-
+INSERT INTO Instructor (id, title, board) VALUES (1, 'Kaito1', '천제 게시판');
+INSERT INTO Instructor (id, title, board) VALUES (2, 'Kaito2', '자유 게시판');
+INSERT INTO Instructor (id, title, board) VALUES (3, 'Kaito3', '개발 게시판');
+INSERT INTO Instructor (id, title, board) VALUES (4, 'Kaito4', '일상 게시판');
+INSERT INTO Instructor (id, title, board) VALUES (5, 'Kaito5', '사건사고 게시판');

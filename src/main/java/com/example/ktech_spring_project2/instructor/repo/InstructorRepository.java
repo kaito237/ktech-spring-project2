@@ -9,4 +9,5 @@ public interface InstructorRepository
         extends JpaRepository<Instructor, Long> {
 
     List<Instructor> findByTitle(String title);
+
 }
